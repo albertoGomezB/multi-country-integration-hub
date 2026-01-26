@@ -73,5 +73,5 @@ Client
 🚧 Work in progress
 This project is built incrementally, commit by commit.
 
-📘 For detailed setup and operational notes, see [docs/runbook.md](docs/runbook.md)
+📘 For detailed setup and operational notes, see [Runbook](runbook.md)
 
