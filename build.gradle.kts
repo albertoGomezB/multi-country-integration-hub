@@ -1,3 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.gradle.jvm.toolchain.JavaLanguageVersion
+import org.gradle.api.plugins.JavaPluginExtension
+
 plugins {
   kotlin("jvm") version "2.0.10" apply false
   kotlin("plugin.spring") version "2.0.10" apply false
@@ -9,13 +13,22 @@ plugins {
 allprojects {
   group = "com.agb.integrationhub"
   version = "0.1.0"
-  repositories { mavenCentral() }
+
+  repositories {
+    mavenCentral()
+  }
 }
 
 subprojects {
   plugins.withId("org.jetbrains.kotlin.jvm") {
-    extensions.configure<org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension>("kotlin") {
+    extensions.configure<KotlinJvmProjectExtension> {
       jvmToolchain(21)
+    }
+  }
+
+  plugins.withId("java") {
+    extensions.configure<JavaPluginExtension> {
+      toolchain.languageVersion.set(JavaLanguageVersion.of(21))
     }
   }
 }
