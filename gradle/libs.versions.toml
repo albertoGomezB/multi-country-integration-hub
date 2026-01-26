@@ -1,0 +1,5 @@
+[versions]
+jackson = "2.17.2"
+
+[libraries]
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
