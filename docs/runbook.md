@@ -206,7 +206,7 @@ CDK provisions infrastructure
 -> Api enqueues requests asynchronously
 -> Worker process requests independently
 
-This model prioritizes reliability, decoupling and operational clarity.
+This model prioritizes reliability[README.md](README.md), decoupling and operational clarity.
 
 
 
