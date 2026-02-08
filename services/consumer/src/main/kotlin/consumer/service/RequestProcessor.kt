@@ -20,8 +20,8 @@ class RequestProcessor(
     // 1. Load IntegrationRequest
     val request = repository.findById(requestId.toString())
     if (request == null) {
-      log.warn("Request {} not found, skipping", requestId)
-      return
+      log.error("Request {} not found", requestId)
+      throw IllegalStateException("Request not found")
     }
 
     // 2. Validate current status (idempotency)
