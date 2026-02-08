@@ -2,6 +2,7 @@ package consumer.integration.resolver
 
 import consumer.integration.NotificationHandler
 import consumer.integration.impl.EmailNotificationHandler
+import consumer.integration.impl.SmsNotificationHandler
 import consumer.integration.impl.WhatsappNotificationHandler
 import org.springframework.stereotype.Component
 import shared.model.IntegrationRequest
@@ -13,6 +14,7 @@ class NotificationResolver {
     when (request.country.uppercase()) {
       "ES", "FR", "IT", "GR" -> EmailNotificationHandler()
       "MX", "AR", "CO" -> WhatsappNotificationHandler()
+      "US", "CA", "UK" -> SmsNotificationHandler()
       else -> throw IllegalArgumentException("Unsupported country: ${request.country}")
     }
 }
