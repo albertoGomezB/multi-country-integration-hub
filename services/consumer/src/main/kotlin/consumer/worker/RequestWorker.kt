@@ -13,6 +13,9 @@ class RequestWorker(
 ) {
   private val log = LoggerFactory.getLogger(javaClass)
 
+  /**
+   * Poll the SQS queue for new request IDs every 3 seconds and process them.
+   */
   @Scheduled(fixedDelay = 3000)
   fun pollQueue() {
 
