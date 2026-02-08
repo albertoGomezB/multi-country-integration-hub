@@ -1,18 +1,22 @@
 package consumer.worker
 
-import consumer.adapters.SqsQueryRepository
 import consumer.service.RequestProcessor
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
+import shared.repository.QueryRepository
+import software.amazon.awssdk.services.sqs.SqsClient
 
 @Component
 class RequestWorker(
-  private val queueRepository: SqsQueryRepository,
-  private val processor: RequestProcessor
+  private val queueRepository: QueryRepository,
+  private val processor: RequestProcessor,
+  private val sqsClient: SqsClient,
+  @Value("\${worker.queueUrl}") private val queueUrl: String
 ) {
   private val log = LoggerFactory.getLogger(javaClass)
-  private val maxRetries = 3;
+  private val maxRetries = 3
   private val retryCounter = mutableMapOf<String, Int>()
 
   /**

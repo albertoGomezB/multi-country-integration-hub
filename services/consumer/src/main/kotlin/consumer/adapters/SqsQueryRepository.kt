@@ -1,12 +1,15 @@
 package consumer.adapters
 
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Repository
 import shared.repository.QueryRepository
 import software.amazon.awssdk.services.sqs.SqsClient
 import java.util.UUID
 
+@Repository
 class SqsQueryRepository(
   private val sqsClient: SqsClient,
-  private val queueUrl: String
+  @Value("\${worker.queueUrl}") private val queueUrl: String
 ) : QueryRepository {
 
   override fun enqueue(requestId: UUID) {
