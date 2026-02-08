@@ -195,6 +195,10 @@ Step 2: Verify message in SQS
 Expected result:
 - A message containing the request ID in the message body
 
+## Worker Execution Notes
+
+The worker runs independently from the API and polls the queue at a fixed interval.
+Retry handling is applied at the consumer level and limited by design to avoid infinite reprocessing.
 
 ## Mental Model
 
@@ -206,7 +210,8 @@ CDK provisions infrastructure
 -> Api enqueues requests asynchronously
 -> Worker process requests independently
 
-This model prioritizes reliability[README.md](README.md), decoupling and operational clarity.
+This model prioritizes reliability, decoupling and operational clarity.
+For a high-level overview, see README.md.
 
 
 
